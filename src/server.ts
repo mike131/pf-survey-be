@@ -1,11 +1,11 @@
 import express from 'express';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
 import { json, urlencoded } from 'body-parser';
 import morgan from 'morgan';
 import cors from 'cors';
 import config from './config';
 import { connect } from './utils/db';
-import { createServer } from 'http';
-import { Server } from 'socket.io';
 
 import questionRoutes from './resources/question/question.router';
 import answerRoutes from './resources/answer/answer.router';
