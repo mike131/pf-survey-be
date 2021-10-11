@@ -6,4 +6,4 @@
 4. Use node `v14.18.0` or run `nvm use` in the project root
 5. Install dependencies with `npm i`
 6. **If this is your first time running** seed the app with `npm run seed` 
-7. Run `npm start`
+7. Run `npm run dev`
