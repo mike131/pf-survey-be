@@ -1,6 +1,3 @@
 export const config = {
-  secrets: {
-    jwt: 'learneverything',
-  },
-  dbUrl: 'mongodb://localhost:27017/pf-survey',
+  dbUrl: process.env.MONGODB_URI,
 };
