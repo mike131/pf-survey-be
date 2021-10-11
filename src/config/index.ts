@@ -28,7 +28,7 @@ const baseConfig: ServerConfig = {
   isTest: env === 'testing',
   port: process.env.PORT || 5000,
   wsPort: process.env.WS_PORT || 8080,
-  wsOrigins: ['http://localhost:3000'],
+  wsOrigins: ['http://localhost'],
 };
 
 let envConfig = {} as ServerConfig;
