@@ -11,15 +11,6 @@ import questionRoutes from './resources/question/question.router';
 import answerRoutes from './resources/answer/answer.router';
 
 export const app = express();
-const server = createServer(app);
-export const io = new Server(server, {
-  path: '/',
-  cors: {
-    origin: config.wsOrigins,
-    credentials: true,
-  },
-});
-
 app.disable('x-powered-by');
 
 // Register some basic helper/cors/logging middleware
@@ -30,6 +21,15 @@ app.use(morgan('dev'));
 
 app.use('/api/question', questionRoutes);
 app.use('/api/answer', answerRoutes);
+
+const server = createServer(app);
+export const io = new Server(server, {
+  path: '/socket.io',
+  cors: {
+    origin: config.wsOrigins,
+    credentials: true,
+  },
+});
 
 io.on('connection', (socket) => {
   // Basic room joining
@@ -46,14 +46,10 @@ io.on('connection', (socket) => {
 export const start = async (): Promise<void> => {
   try {
     await connect(config.dbUrl);
-    // API Listen
-    app.listen(config.port, () => {
-      console.log(`API Listening on http://localhost:${config.port}/api`);
-    });
 
-    // Socket Listen
-    server.listen(config.wsPort, () => {
-      console.log(`Socket.IO Listening on http://localhost:${config.wsPort}`);
+    // Listen
+    server.listen(config.port, () => {
+      console.log(`Listening on http://localhost:${config.port}`);
     });
   } catch (e) {
     console.error(e);
