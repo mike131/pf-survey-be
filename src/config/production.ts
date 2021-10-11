@@ -1,4 +1,4 @@
 export const config = {
-  wsOrigins: [process.env.APP_FRONTEND],
+  wsOrigins: ['http://localhost', process.env.APP_FRONTEND],
   dbUrl: process.env.MONGODB_URI,
 };
